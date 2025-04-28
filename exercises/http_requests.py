@@ -8,34 +8,42 @@
 请补全下面的函数，实现发送HTTP请求并处理响应的功能。
 """
 
+import requests
+
+
 def get_website_content(url):
     """
     发送GET请求获取网页内容
-    
+
     参数:
     - url: 目标网站URL
-    
+
     返回:
-    - 包含响应信息的字典: 
+    - 包含响应信息的字典:
       {
         'status_code': HTTP状态码,
         'content': 响应内容文本,
         'headers': 响应头部信息
       }
     """
-    # 请在下方编写代码
-    # 使用requests.get()发送GET请求
-    # 返回包含状态码、内容和头部信息的字典
-    pass
+    response = requests.get(url, timeout=5)  # 设置5秒超时
+    response.raise_for_status()  # 如果请求失败抛出HTTPError异常
+
+    return {
+        "status_code": response.status_code,
+        "content": response.text,
+        "headers": dict(response.headers),
+    }
+
 
 def post_data(url, data):
     """
     发送POST请求提交数据
-    
+
     参数:
     - url: 目标网站URL
     - data: 要提交的数据字典
-    
+
     返回:
     - 包含响应信息的字典:
       {
@@ -44,7 +52,11 @@ def post_data(url, data):
         'success': 请求是否成功(状态码为2xx)
       }
     """
-    # 请在下方编写代码
-    # 使用requests.post()发送POST请求
-    # 返回包含状态码、响应JSON和成功标志的字典
-    pass 
+    response = requests.post(url, json=data, timeout=5)
+    response_json = response.json() if response.content else None
+
+    return {
+        "status_code": response.status_code,
+        "response_json": response_json,
+        "success": 200 <= response.status_code < 300,
+    }
