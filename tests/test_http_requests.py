@@ -12,7 +12,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 # 导入待测试的函数
 from exercises.http_requests import get_website_content, post_data
 
-# @pytest.mark.skip(reason="需要网络连接，可能不稳定")
+@pytest.mark.skip(reason="需要网络连接，可能不稳定")
 def test_get_website_content_live():
     """测试实际GET请求（需要网络）"""
     result = get_website_content('https://httpbin.org/get')
