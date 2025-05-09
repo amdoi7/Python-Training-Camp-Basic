@@ -28,7 +28,6 @@ def find_first_even(numbers):
         if numbers[index] % 2 == 0:
             return numbers[index]
         index += 1
-    return None
     # 法三
     # for num in numbers:
     #     if num % 2 == 0:
