@@ -38,5 +38,5 @@ def write_file(file_path, content):
     # 请在下方编写代码
     # 使用with语句和open()函数写入内容到文件
     with open(file_path, "w", encoding="utf-8") as file:
-        file.write(content)
-    return True
+        return file.write(content) != 0
+

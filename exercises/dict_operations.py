@@ -20,24 +20,11 @@ def student_dict_operations(students_dict, operation, *args):
     返回:
     - 根据操作返回不同结果
     """
-    # ops = {
-    #     "add": lambda d, k, v: d.update({k: v}) or d,
-    #     "update": lambda d, k, v: d.update({k: v}) or d,
-    #     "remove": lambda d, k: d.pop(k),
-    # }
-
-    # if operation in ops:
-    #     ops[operation](students_dict, *args)
-    #     return students_dict
-    # return students_dict.get(*args)
 
     if operation == "add" or operation == "update":
         students_dict[args[0]] = args[1]
-        return students_dict
     elif operation == "remove":
-        if args[0] in students_dict:
-            students_dict.pop(args[0])
-        return students_dict
+        students_dict.pop(args[0])
     elif operation == "get":
         return students_dict.get(args[0])
     return students_dict

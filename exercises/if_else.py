@@ -26,18 +26,18 @@ def check_grade(score):
     - 对应的等级：优秀、良好、中等、及格、不及格
     """
     # 法一
-    # grade_ranges = {
-    #     (90, 100): "优秀",
-    #     (80, 89): "良好",
-    #     (70, 79): "中等",
-    #     (60, 69): "及格",
-    #     (0, 59): "不及格",
-    # }
+    grade_ranges = {
+        (90, 100): "优秀",
+        (80, 89): "良好",
+        (70, 79): "中等",
+        (60, 69): "及格",
+        (0, 59): "不及格",
+    }
 
-    # for (low, high), grade in grade_ranges.items():
-    #     if low <= score <= high:
-    #         return grade
+    for (low, high), grade in grade_ranges.items():
+        if low <= score <= high:
+            return grade
     # 法二
-    breakpoints = [60, 70, 80, 90]
-    grades = ["不及格", "及格", "中等", "良好", "优秀"]
-    return grades[bisect.bisect_right(breakpoints, score)]
+    # breakpoints = [60, 70, 80, 90]
+    # grades = ["不及格", "及格", "中等", "良好", "优秀"]
+    # return grades[bisect.bisect_right(breakpoints, score)]

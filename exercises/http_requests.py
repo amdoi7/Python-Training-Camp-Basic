@@ -26,9 +26,7 @@ def get_website_content(url):
         'headers': 响应头部信息
       }
     """
-    response = requests.get(url, timeout=5)  # 设置5秒超时
-    response.raise_for_status()  # 如果请求失败抛出HTTPError异常
-
+    response = requests.get(url)
     return {
         "status_code": response.status_code,
         "content": response.text,
@@ -52,11 +50,10 @@ def post_data(url, data):
         'success': 请求是否成功(状态码为2xx)
       }
     """
-    response = requests.post(url, json=data, timeout=5)
-    response_json = response.json() if response.content else None
+    response = requests.post(url, data=data)
 
     return {
         "status_code": response.status_code,
-        "response_json": response_json,
+        "response_json": response.json(),
         "success": 200 <= response.status_code < 300,
     }
